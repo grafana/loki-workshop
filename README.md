@@ -1,6 +1,6 @@
-# loki_workshop_breakout
+# Loki workshop breakout
 
-[Troubleshooting and debugging](./troubleshooting_and_debugging.md)
+[Breakout 1: Troubleshooting and debugging](./troubleshooting_and_debugging.md)
 
-[Ad hoc metrics with Grafana Loki](./ad_hoc_metric.md)
+[Breakout 2: Ad hoc metrics with Grafana Loki](./ad_hoc_metric.md)
 
