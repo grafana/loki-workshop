@@ -10,30 +10,30 @@
   - Enter URL: `http://prometheus:9090` << REPLACE
   - Enable the basic auth toggle
   - Enter Username: `REPLACE`, Password: `REPLACE`
-  - Click save and test.
+  - Click `Save and Test`.
 
 ### Jaeger tracing datasource
 
-Add a new Jaeger datasource with the following settings:
-Name: JaegerCorrelation
-Enter URL: http://jaeger:16686 << REPLACE
-Enable the basic auth toggle
-Enter Username: REPLACE, Password: REPLACE
-Click save and test
+- Add a new Jaeger datasource with the following settings:
+  - Name: JaegerCorrelation
+  - Enter URL: `http://jaeger:16686` << REPLACE
+  - Enable the basic auth toggle
+  - Enter Username: `REPLACE`, Password:`REPLACE`
+  - Click `Save and Test`
 
 ### Loki logs datasource
 
-Loki datasource
-Name: LokiCorrelation
-Enter URL: http://loki:3100 << REPLACE
-Enable the basic auth toggle
-Enter Username: REPLACE, Password: REPLACE
-Configure to use Jaeger for visualising the traces with the derived fields functionality:
-Name: TraceId
-Regex: .*trace_id=(.*?)\s.*   
-Query: ${__value.raw}
-Enable the internal link and set to Jaeger
-Click save and test
+- Add a new Loki datasource with the following settings:
+  - Name: LokiCorrelation
+  - Enter URL: http://loki:3100 << REPLACE
+  - Enable the basic auth toggle
+  - Enter Username: REPLACE, Password: REPLACE
+  - Configure to use Jaeger for visualising the traces with the derived fields functionality:
+      - Name: TraceId
+      - Regex: .*trace_id=(.*?)\s.*   
+      - Query: ${__value.raw}
+      - Enable the internal link and set to Jaeger
+  - Click save and test
 
 ## Write your first Loki queries with the explore view
 
