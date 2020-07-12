@@ -62,26 +62,25 @@ We're now going to add a panel showing the percentage of request made by Google'
 - We want to make clear this metrics is a percentage.  Go to the Field tab in the upper right corner and choose the unit `percent (0-100)` as value
 - Set panel title to `current % of request by Google` and save the panel.
 
-### worldmap panel 
+### Worldmap panel 
 
-World map using the country code  that was added by geocoding the IP address.
-Click the add a new panel icon in the upper right corner.
-Select the LokiPreview datasource
-Add the following query which counts the log lines, grouped by the extracted country_code.
-sum by (country_code) (count_over_time({filename="/var/log/nginx/access.log"} | regexp "HTTP\\/1\\.1\" (?P<statuscode>\\d{3}) (?P<bytessent>\\d+) (?P<referer>\".*?\") \"(?P<useragent>.*)\" \"(?P<country_code>.*)\""[$__interval]))
-In Panel tab on the right, select Worldmap panel as visualisation option,
-Set panel title to “Total requests per country” and save the panel.
+World map using the country code that was added by geocoding the IP address.
+- Click the add a new panel icon in the upper right corner.
+- Select the `LokiPreview` datasource
+- Add the following query which counts the log lines, grouped by the extracted country_code; `sum by (country_code) (count_over_time({filename="/var/log/nginx/access.log"} | regexp "HTTP\\/1\\.1\" (?P<statuscode>\\d{3}) (?P<bytessent>\\d+) (?P<referer>\".*?\") \"(?P<useragent>.*)\" \"(?P<country_code>.*)\""[$__interval]))`
+- In Panel tab on the right, select the Worldmap panel as the visualisation,
+- Set panel title to `Total requests per country` and save the panel.
 
-### Import the sample web analytics demo dashboard
+### Import the full sample web analytics demo dashboard
 
 To import a dashboard click the + icon in the side menu, and then click Import.
-The dashboard id is: 12559
-You can now explore some of the panels, like the 
-% of 5xx requests
-Top requested pages
-Top user agents
-Top IP addresses
-Log panel
+- The dashboard id is: `12559`
+- You can now explore some of the panels, like the: 
+  - % of 5xx requests
+  - Top requested pages
+  - Top user agents
+  - Top IP addresses
+  - Log panel
 
 
 
