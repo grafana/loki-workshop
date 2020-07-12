@@ -73,7 +73,7 @@
 - Besides outages, it’s also common to have latency issues for which traces allows us to find the bottleneck in complex request/response flows. 
  - Zoom out the time range until you have log lines that start with a `Trace ID`
  - Click on a log line with a `Trace ID`
- - In the parse fields, you should have a Jaeger button next to the parsed TraceId value.
+ - In the parse fields, you should have a Jaeger button next to the parsed `Trace Id` value.
   - Click on it, and you can now inspect the trace in the new Grafana 7 Trace View and understand any possible bottlenecks in the request/response flow of your service.
 
 
