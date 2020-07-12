@@ -35,21 +35,19 @@
       - Enable the internal link and set to Jaeger
   - Click save and test
 
-## Write your first Loki queries with the explore view
+## Write your first Loki queries in the Grafana Explore view
 
-Query logs using labels:
-Go to Explore in the left menu, and make sure you have the LokiCorrelation selected in the upper left corner, with the logs view selected.
-Select the {service="web_app_3"} log label from the Log Labels dropdown, which is positioned  left of the query input box. 
-Click on one of the returned log lines to see its row detail view. If you don’t see enough rows, zoom out the time range using the magnifying glass icon in the right upper corner
-Filter your logs down using filter expressions, try out by pasting the below queries and press shift-enter to run them.
-All log lines that contain “favicon.ico”:  {service="web_app_3"} |= "favicon.ico"
-All log lines that don’t contain “200”: {service="web_app_3"} != "200"  
-All log lines that contain the 5xx value: {service="web_app_3"} |~ “5\\d{2}”
-Try live tailing (upper right Live button) on one of these queries and view the logs as they are received by Loki, and filtered by the query.
-Switch to metrics mode and start graphing logs counts with Range Vectors Aggregations, try out by pasting the below queries and press shift-enter to run them.
-Graph the log line count for any web_app service with an 5xx category status code AND contains Mozilla for every 5 minute interval.
-sum by (service) (count_over_time({ service=~"web_app_.+", status_code=~"5\\d{2}" } |~ "Mozilla.*" [5m]))
-TODO: more here?
+- Filter logs using Loki label queries:
+  - Go to Explore in the left menu, and make sure you have the `LokiCorrelation` selected in the upper left corner, with the logs view selected.
+  - Select the `{service="web_app_3"}` log label from the Log Labels dropdown, which is positioned  left of the query input box. 
+  - Click on one of the returned log lines to see its row detail view. If you don’t see enough rows, zoom out the time range using the magnifying glass icon in the right upper corner
+  - Filter your logs down using filter expressions, try out by pasting the below queries and press shift-enter to run them.
+    - All log lines that contain `favicon.ico`:  `{service="web_app_3"} |= "favicon.ico"`
+    - All log lines that don’t contain a `200` value: `{service="web_app_3"} != "200"`
+    - All log lines that contain the 5xx value: `{service="web_app_3"} |~ "5\\d{2}"`
+  - Try live tailing (upper right Live button) on one of these queries and view the logs as they are received by Loki, and filtered by the query.
+  - Switch to metrics mode and start graphing logs counts with Range Vectors Aggregations, try out by pasting the below queries and press shift-enter to run them.
+    - Graph the log line count for any web_app service with an 5xx category status code AND contains Mozilla for every 5 minute interval `sum by (service) (count_over_time({ service=~"web_app_.+", status_code=~"5\\d{2}" } |~ "Mozilla.*" [5m]))`
 
 ## Correlate metrics, logs and traces
 
