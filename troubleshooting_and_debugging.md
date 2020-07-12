@@ -51,31 +51,30 @@
 
 ## Correlate metrics, logs and traces
 
-Finding suspect patterns in prometheus metrics
-Open the PromCorrelation datasource in the explore view (left upper corner)
-Select from the metrics picker web > web_http_requests
-Make sure the time picker (right upper corner, clock icon) is set to last 5 minutes.
-Notice the three series, each charting the amount of concurrent users over time. 
-Filter down on the suspect service, web_app_3, by changing adding a label filter and press shift enter to run.
-web_http_requests{service="web_app_3"}
-Notice the suspect saw pattern, let’s find out what’s causing the drop in concurrent requests.
-Correlating your prometheus metrics with your loki metrics
-Click the split button next to the time picker
-The new (right) panel shows the same prometheus query, change the datasource selection on that panel to our LokiCorrelation datasource. 
-Notice that it will recognize the label selection of prometheus, and apply it to your loki logs, so you get the latest relevant logs right away
-Click the chain button next to the time picker to sync up the timerange of both views.
-Select in the prometheus graph the timerange where the drop happend
-Notice the loki panel timerange also shows the logs of that timerange. 
-If you have a lot of log lines, filter on the errors by clicking on the error label on the histogram.
-You should see a log line with out of memory, which hints at a memory leak being the reason of the drop in concurrent users.
+- Finding suspect patterns in prometheus metrics
+  - Open the PromCorrelation datasource in the explore view (left upper corner)
+  - Select from the metrics picker `web` > `web_http_requests`
+  - Make sure the time picker (right upper corner, clock icon) is set to last 5 minutes.
+  - Notice the three series, each charting the amount of concurrent users over time. 
+  - Filter down on the suspect service, `web_app_3`, by changing adding a label filter and press `shift-enter` to run: `web_http_requests{service="web_app_3"}`
+  - Notice the suspect 'saw pattern', let’s find out what’s causing the steep drop in concurrent users requests.
+ - Correlating your prometheus metrics with your loki metrics
+  - Click the split button next to the time picker
+  - The new (right) panel shows the same prometheus query, change the datasource selection on that panel to our LokiCorrelation datasource. 
+  -  Notice that it will recognize the label selection of prometheus, and apply it to your loki logs, so you get the latest relevant logs right away
+  - Click the chain button next to the time picker to sync up the timerange of both views.
+  - Select in the prometheus graph the timerange where the drop happend
+  - Notice the loki panel timerange also shows the logs of that timerange. 
+  - If you have a lot of log lines, filter on the errors by clicking on the error label on the histogram.
+  - You should see a log line with out of memory, which hints at a memory leak being the reason of the drop in concurrent users.
 
 ## Correlate metrics, logs and traces
 
-Besides outages, it’s also common to have latency issues for which traces allows us to find the bottleneck in complex request/response flows. 
- Zoom out the time range until you have log lines that start with a trace ID
-Click on a log line with a trace ID
-In the parse fields, you should have a Jaeger button next to the parsed TraceId value.
-Click on it, and you can now inspect the trace in the new Grafana 7 Trace View and understand any possible bottlenecks in the request/response flow of your service.
+- Besides outages, it’s also common to have latency issues for which traces allows us to find the bottleneck in complex request/response flows. 
+ - Zoom out the time range until you have log lines that start with a `Trace ID`
+ - Click on a log line with a `Trace ID`
+ - In the parse fields, you should have a Jaeger button next to the parsed TraceId value.
+  - Click on it, and you can now inspect the trace in the new Grafana 7 Trace View and understand any possible bottlenecks in the request/response flow of your service.
 
 
 
