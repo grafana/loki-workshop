@@ -1,4 +1,4 @@
-# Loki workshop breakout
+# Loki workshop breakout sessions
 
 [Breakout 1: Troubleshooting and debugging](./troubleshooting_and_debugging.md)
 
