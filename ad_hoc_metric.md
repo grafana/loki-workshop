@@ -5,16 +5,10 @@
 - Go to Configuration > Data sources in the left menu, and click the “Add data source” button
   - Select Loki datasource
   - Name: `LokiPreview`
-  - Enter URL: `http://loki:3100` << REPLACE
+  - Enter URL: `http://34.91.205.26/` 
   - Enable the basic auth toggle
-  - Enter Username: `REPLACE`, Password: `REPLACE`
+  - Enter Username: `demokit`, Password: `grafana`
   - Click `Save and test`
-
-FOR THE SE Dry run, please use 
-
-URL: http://34.91.205.26/
-Username: demokit
-Password: grafana
 
 ## Write LogQL Metric queries with the explorer view: Query time labels extraction
 
