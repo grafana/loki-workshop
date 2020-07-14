@@ -25,7 +25,7 @@
 
 - Add a new Loki datasource with the following settings:
   - Name: LokiCorrelation
-  - Enter URL: http://loki:3100
+  - Enter URL: `http://loki:3100`
 <!---   - Enable the basic auth toggle
   - Enter Username: REPLACE, Password: REPLACE --->
   - Configure to use Jaeger for visualising the traces with the derived fields functionality:
