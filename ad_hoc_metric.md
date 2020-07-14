@@ -7,7 +7,7 @@
   - Name: `LokiPreview`
   - Enter URL: `http://34.91.205.26/` 
   - Enable the basic auth toggle
-  - Enter Username: `demokit`, Password: `grafana`
+  - Enter Username: `WILL BE PROVIDED`, Password: `WILL BE PROVIDED`
   - Click `Save and test`
 
 ## Write LogQL Metric queries with the explorer view: Query time labels extraction
