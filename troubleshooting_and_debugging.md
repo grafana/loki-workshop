@@ -5,12 +5,16 @@
 ### Prometheus metrics datasource
 
 - Go to Configuration > Data sources in the left menu, and click the “Add data source” button
+  ![Config button](img/config-datasources.png)
+  ![Add data source button](img/config-add-datasource.png)
 - Add a new prometheus datasource with the following settings:
   - Name: `PromCorrelation`
   - Enter URL: `http://prometheus:9090`
 <!---  - Enable the basic auth toggle 
   - Enter Username: `REPLACE`, Password: `REPLACE` --->
   - Click `Save and Test`.
+    ![Add Prometheus](img/config-add-prom.png)
+    ![Save and Test](img/config-prom.png)
 
 ### Jaeger tracing datasource
 
@@ -20,6 +24,9 @@
 <!---   - Enable the basic auth toggle
   - Enter Username: `REPLACE`, Password:`REPLACE` --->
   - Click `Save and Test`
+  ![Add Jaeger](img/config-add-jaeger.png)
+  ![Save and Test](img/config-jaeger.png)
+
 
 ### Loki logs datasource
 
@@ -28,23 +35,33 @@
   - Enter URL: `http://loki:3100`
 <!---   - Enable the basic auth toggle
   - Enter Username: REPLACE, Password: REPLACE --->
+  ![Add Loki](img/config-add-loki.png)
+  ![Loki config](img/config-loki.png)
   - Configure to use Jaeger for visualising the traces with the derived fields functionality:
       - Name: TraceId
       - Regex: `.*trace_id=(.*?)\s.*`  
       - Query: `${__value.raw}`
       - Enable the internal link and select the Jaeger service
   - Click `Save and Test`
+  ![Loki derived fields button](img/loki-derived-button.png)
+  ![Loki correlation](img/loki-correlation.png)
+
 
 ## Write your first Loki queries in the Grafana Explore view
 
 - Filter logs using Loki label queries:
   - Go to Explore in the left menu, and make sure you have the `LokiCorrelation` selected in the upper left corner, with the logs view selected.
-  - Select the `{service="web_app_3"}` log label from the Log Labels dropdown, which is positioned  left of the query input box. 
+    ![Explore button](img/explore-button.png)
+    ![Loki explore view](img/loki-explore.png)
+  - Select the `{service="web_app_3"}` log label from the Log Labels dropdown, which is positioned  left of the query input box.
+    ![Loki select](img/loki-select.png)
   - Click on one of the returned log lines to see its row detail view. If you don’t see enough rows, zoom out the time range using the magnifying glass icon in the right upper corner
+    ![Expand a log line](img/loki-expand.png)
   - Filter your logs down using filter expressions, try out by pasting the below queries and press shift-enter to run them.
     - All log lines that contain `favicon.ico`:  `{service="web_app_3"} |= "favicon.ico"`
     - All log lines that don’t contain a `200` value: `{service="web_app_3"} != "200"`
     - All log lines that contain the 5xx value: `{service="web_app_3"} |~ "5\\d{2}"`
+    ![Querying Loki](img/loki-query.png)
   - Try live tailing (upper right Live button) on one of these queries and view the logs as they are received by Loki, and filtered by the query.
   - Switch to metrics mode and start graphing logs counts with Range Vectors Aggregations, try out by pasting the below queries and press shift-enter to run them.
     - Graph the log line count for any web_app service with an 5xx category status code AND contains Mozilla for every 5 minute interval `sum by (service) (count_over_time({ service=~"web_app_.+", status_code=~"5\\d{2}" } |~ "Mozilla.*" [5m]))`
@@ -53,6 +70,7 @@
 
 - Finding suspect patterns in prometheus metrics
   - Open the PromCorrelation datasource in the explore view (left upper corner)
+    ![Prometheus Correlation in the Explore view](img/prom-explore.png)
   - Select from the metrics picker `web` > `web_http_requests`
   - Make sure the time picker (right upper corner, clock icon) is set to last 5 minutes.
   - Notice the three series, each charting the amount of concurrent users over time. 
@@ -60,9 +78,11 @@
   - Notice the suspect 'saw pattern', let’s find out what’s causing the steep drop in concurrent users requests.
  - Correlating your prometheus metrics with your loki metrics
   - Click the split button next to the time picker
+    ![Split button](img/split.png)
   - The new (right) panel shows the same prometheus query, change the datasource selection on that panel to our LokiCorrelation datasource. 
   -  Notice that it will recognize the label selection of prometheus, and apply it to your loki logs, so you get the latest relevant logs right away
   - Click the chain button next to the time picker to sync up the timerange of both views.
+    ![Correlate views](img/correlate.png)
   - Select in the prometheus graph the timerange where the drop happend
   - Notice the loki panel timerange also shows the logs of that timerange. 
   - If you have a lot of log lines, filter on the errors by clicking on the error label on the histogram.
@@ -73,8 +93,10 @@
 - Besides outages, it’s also common to have latency issues for which traces allows us to find the bottleneck in complex request/response flows. 
  - Zoom out the time range until you have log lines that start with a `Trace ID`
  - Click on a log line with a `Trace ID`
+   ![Log with trace](img/log-with-trace.png)
  - In the parse fields, you should have a Jaeger button next to the parsed `Trace Id` value.
   - Click on it, and you can now inspect the trace in the new Grafana 7 Trace View and understand any possible bottlenecks in the request/response flow of your service.
+    ![Log and trace correlation](img/log-trace-correlation.png)
 
 
 
