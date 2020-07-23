@@ -32,6 +32,7 @@ We're now going to add a panel showing the 95th percentile of requests time:
 2. Select the `LokiPreview` datasource
 3. Add the following query which extracts the total request time from every log line, and calculates the 95th percentile. Which is the max request time of 95% within the interval of five minutes; `sum by(host) (quantile_over_time(0.95,{filename="/var/log/nginx/access.log"} | regexp "HTTP\\/1\\.1\" \\d{3} \\d+ \".*?\" \".*\" \".*?\" (?P<value>[-+]?[0-9]*\\.?[0-9]+)"[5m]))`
 4. Add another query here, that will show the max request time within every 1 min interval; `sum by(host) (max_over_time({filename="/var/log/nginx/access.log"} | regexp "HTTP\\/1\\.1\" \\d{3} \\d+ \".*?\" \".*\" \".*?\" (?P<value>[-+]?[0-9]*\\.?[0-9]+)"[1m]))`
+5. Set the legend value of the 95th percentile value to : `{{host}} - 95%` and set the legend value of the max query to `{{host}} - max`
 5. Set panel title to `95th percentile of Request Time` and save the panel.
   
 ### Percentage of request by googlebot panel
@@ -43,7 +44,8 @@ We're now going to add a panel showing the percentage of request made by Google'
 4. We want to show it as a total number, so in the panel settings on the right, choose the Stat visualisation 
 5. It now shows the mean value over the current time range, and we want the show the current percentage, so scroll down to display settings and set Value to Last.  
 6. We want to make clear this metrics is a percentage.  Go to the Field tab in the upper right corner and set the Unit option to `percent (0-100)` as value. (This option can be found under Misc)
-7. Set panel title to `current % of request by Google` and save the panel.
+7. Below the Unit option is a field called Max.  Set Max to `5` as we do not anticipate the percentage of Googlebot requests to be higher than 5% of the overall total.
+8. Set panel title to `current % of request by Google` and save the panel.
 
 ### Worldmap panel 
 
