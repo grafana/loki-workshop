@@ -5,9 +5,9 @@
 1. Go to Explorer  in the left menu, and select the LokiPreview datasource
 2. Run the query `{filename="/var/log/nginx/access.log"} |= "Googlebot"` for the last 5 minutes, notice you get largely unparsed log lines of googlebot requests. Click a log line to see it’s details.
 3. Query time labels extraction
-  - We use a regexp to extract statuscode from the raw log line.
-  - Run the following request to get the amount of Googlebot requests per minute, split out by statuscode: `count_over_time({filename="/var/log/nginx/access.log"} |= "Googlebot" | regexp "HTTP/1.1\" (?P<statuscode>\\d{3}) "[1m])`
-  - Run the following request to get the amount of requests per minute, split out by http_method `count_over_time({filename="/var/log/nginx/access.log"} | regexp "\"(?P<http_method>GET|POST|PUT|DELETE|PATCH|HEAD) "[1m])`
+    - We use a regexp to extract statuscode from the raw log line.
+    - Run the following request to get the amount of Googlebot requests per minute, split out by statuscode: `count_over_time({filename="/var/log/nginx/access.log"} |= "Googlebot" | regexp "HTTP/1.1\" (?P<statuscode>\\d{3}) "[1m])`
+    - Run the following request to get the amount of requests per minute, split out by http_method `count_over_time({filename="/var/log/nginx/access.log"} | regexp "\"(?P<http_method>GET|POST|PUT|DELETE|PATCH|HEAD) "[1m])`
 
 ## Write LogQL Metric queries with the explorer view: Query time metrics extraction
 
