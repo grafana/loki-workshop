@@ -1,59 +1,5 @@
 # Troubleshooting and debugging
 
-## Add your data sources
-
-### Prometheus metrics data source
-
-1. Go to **Configuration > Data Sources** in the left menu, then click **Add data source**.
-<div><a href="https://github.com/grafana/loki_workshop_breakout/raw/master/img/config-datasources.png"><img src="img/config-datasources.png" alt="Config button" width="100px"></a></div>
-<div><a href="https://github.com/grafana/loki_workshop_breakout/raw/master/img/img/config-add-datasource.png"><img src="img/config-add-datasource.png" alt="Add datasource button" width="300px"></a></div>
-
-2. Add a new Prometheus data source with the following settings:
-
-  - Name: `PromCorrelation`
-  - Enter URL: `http://prometheus:9090`
-<!---  - Enable the basic auth toggle 
-  - Enter Username: `REPLACE`, Password: `REPLACE` --->
-  
-3. Click **Save and Test**.
-<div><a href="https://github.com/grafana/loki_workshop_breakout/raw/master/img/config-add-prom.png"><img src="img/config-add-prom.png" alt="Add Prometheus" width="100px"></a></div>
-<div><a href="https://github.com/grafana/loki_workshop_breakout/raw/master/img/config-prom.png"><img src="img/config-prom.png" alt="Save and Test" width="100px"></a></div>
-
-### Jaeger tracing data source
-
-1. Add a new Jaeger data source with the following settings:
-  - Name: `JaegerCorrelation`
-  - Enter URL: `http://jaeger:16686`
-<!---   - Enable the basic auth toggle
-  - Enter Username: `REPLACE`, Password:`REPLACE` --->
-  
-2. Click **Save and Test**.
-  ![Add Jaeger](img/config-add-jaeger.png)
-  
-  ![Save and Test](img/config-jaeger.png)
-
-### Loki logs data source
-
-1. Add a new Loki data source with the following settings:
-  ![Add Loki](img/config-add-loki.png)
-  
-  ![Loki config](img/config-loki.png)
-  - Name: `LokiCorrelation`
-  - Enter URL: `http://loki:3100`
-<!---   - Enable the basic auth toggle
-  - Enter Username: REPLACE, Password: REPLACE --->
-  
-2. Configure to use Jaeger for visualising the traces with the Derived fields functionality. Scroll down to see the fields:
-      - Name: TraceId
-      - Regex: `.*trace_id=(.*?)\s.*`  
-      - Query: `${__value.raw}`
-      - Enable the internal link and select the Jaeger service
-      
-        ![Loki derived fields button](img/loki-derived-button.png)
-        ![Loki correlation](img/loki-correlation.png)
-  
-3. Click **Save and Test**.
-
 ## Write your first Loki queries in the Grafana Explore view
 
 Filter logs using Loki label queries
