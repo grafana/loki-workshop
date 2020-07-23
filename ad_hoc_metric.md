@@ -51,8 +51,9 @@ World map using the country code that was added by geocoding the IP address.
 1. Click the add a new panel icon in the upper right corner.
 2. Select the `LokiPreview` datasource
 3. Add the following query which counts the log lines, grouped by the extracted country_code; `sum by (country_code) (count_over_time({filename="/var/log/nginx/access.log"} | regexp "HTTP\\/1\\.1\" (?P<statuscode>\\d{3}) (?P<bytessent>\\d+) (?P<referer>\".*?\") \"(?P<useragent>.*)\" \"(?P<country_code>.*)\""[$__interval]))`
-4. In Panel tab on the right, select the Worldmap panel as the visualisation,
-5. Set panel title to `Total requests per country` and save the panel.
+4. And put as Legend value: `{{country_code}}`
+5. In Panel tab on the right, select the Worldmap panel as the visualisation,
+6. Set panel title to `Total requests per country` and save the panel.
 
 
 
