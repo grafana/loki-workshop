@@ -7,9 +7,7 @@ Filter logs using Loki label queries
 1. Go to Explore in the left menu, and make sure you have the `LokiCorrelation` selected in the upper left corner.
 
     ![Explore button](img/explore-button.png)
-    
-    ![Loki explore view](img/loki-explore.png)
-    
+       
 2. Select the `{service="web_app_3"}` log label from the Log Labels dropdown, which is positioned  left of the query input box. 
     
     ![Loki select](img/loki-select.png)
