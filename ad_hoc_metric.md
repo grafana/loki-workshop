@@ -1,15 +1,5 @@
 # Ad hoc metrics with Grafana Loki
 
-## Add a second Cloud logs data sources to your Grafana instance
-
-- Go to Configuration > Data sources in the left menu, and click the “Add data source” button
-  - Select Loki datasource
-  - Name: `LokiPreview`
-  - Enter URL: `http://34.91.205.26/` 
-  - Enable the basic auth toggle
-  - Enter Username: `WILL BE PROVIDED`, Password: `WILL BE PROVIDED`
-  - Click `Save and test`
-
 ## Write LogQL Metric queries with the explorer view: Query time labels extraction
 
 - Go to Explorer  in the left menu, and select the LokiPreview datasource
@@ -63,18 +53,6 @@ World map using the country code that was added by geocoding the IP address.
 - Add the following query which counts the log lines, grouped by the extracted country_code; `sum by (country_code) (count_over_time({filename="/var/log/nginx/access.log"} | regexp "HTTP\\/1\\.1\" (?P<statuscode>\\d{3}) (?P<bytessent>\\d+) (?P<referer>\".*?\") \"(?P<useragent>.*)\" \"(?P<country_code>.*)\""[$__interval]))`
 - In Panel tab on the right, select the Worldmap panel as the visualisation,
 - Set panel title to `Total requests per country` and save the panel.
-
-### Import the full sample web analytics demo dashboard
-
-To import a dashboard click the + icon in the side menu, and then click Import.
-- The dashboard id is: `12559`
-- You can now explore some of the panels, like the: 
-  - % of 5xx requests
-  - Top requested pages
-  - Top user agents
-  - Top IP addresses
-  - Log panel
-
 
 
 
