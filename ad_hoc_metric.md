@@ -54,7 +54,7 @@ World map using the country code that was added by geocoding the IP address.
 In your Grafana.com portal, install the Worldmap Panel plugin following these instructions 
 https://grafana.com/grafana/plugins/grafana-worldmap-panel/installation 
 
-Return to your Grafana instance, and run the following:  
+Return to your Grafana instance, wait for 2 minutes while the instance auto-restarts after the Worldmap Panel plugin, then run the following:  
 
 1. Click the add a new panel icon in the upper right corner.
 2. Select the `LokiPreview` datasource
