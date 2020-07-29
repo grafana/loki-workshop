@@ -62,11 +62,11 @@ World map using the country code that was added by geocoding the IP address.
 To import a dashboard click the `+` icon in the side menu, and then select Import.
 1. The dashboard id is: `12559`
 2. You can now explore some of the panels, like the: 
-  - % of 5xx requests
-  - Top requested pages
-  - Top user agents
-  - Top IP addresses
-  - Log panel
+    - % of 5xx requests
+    - Top requested pages
+    - Top user agents
+    - Top IP addresses
+    - Log panel
 
 
 
