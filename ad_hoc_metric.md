@@ -57,11 +57,11 @@ World map using the country code that was added by geocoding the IP address.
 5. In Panel tab on the right, select the Worldmap panel as the visualisation,
 6. Set panel title to `Total requests per country` and save the panel.
 
-### Import the full sample web analytics demo dashboard
+## Import the full sample web analytics demo dashboard
 
 To import a dashboard click the `+` icon in the side menu, and then select Import.
-- The dashboard id is: `12559`
-- You can now explore some of the panels, like the: 
+1. The dashboard id is: `12559`
+2. You can now explore some of the panels, like the: 
   - % of 5xx requests
   - Top requested pages
   - Top user agents
