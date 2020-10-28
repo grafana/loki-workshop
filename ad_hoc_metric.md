@@ -63,6 +63,17 @@ Return to your Grafana instance, wait for 2 minutes while the instance auto-rest
 5. In Panel tab on the right, select the Worldmap panel as the visualisation,
 6. Set panel title to `Total requests per country` and save the panel.
 
+### Re-writing log lines
+
+With Loki v2 you can now rewrite log lines with `line_format` and labels with `label_format`. More documentation here: https://grafana.com/docs/loki/latest/logql/#Line-Format-Expression
+
+1. Click the add a new panel icon in the upper right corner.
+2. Select the `Lokiv2` datasource
+3. Choose the Logs visualisation
+3. Add the following query which re-formats every log line
+`{filename="/var/log/nginx/json_access.log"} | json | line_format "request for {{.request_uri}} with HTTP status: {{.status}} "`
+4. Set panel title to `Logs` and save the panel.
+
 ## Import the full sample web analytics demo dashboard
 
 To import a dashboard click the `+` icon in the side menu, and then select Import.
