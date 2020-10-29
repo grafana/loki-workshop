@@ -23,7 +23,7 @@ Let’s create our first Loki dashboard using label and metrics extraction queri
 
 1. Click the plus button on the left menu bar to create a new dashboard
 2. Select last 3 hours in the time picker (top right)
-3. Click the save button and give your dashboard a name. Important! Please include your initials as prefix, so you don't override dashboards of the other workshop participants.
+3. Click the save button and give your dashboard a name. 
 
 ### 95th percentile percentile panel
 
