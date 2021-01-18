@@ -69,13 +69,13 @@ Correlating your prometheus metrics with your Loki metrics
 
 Besides outages, it’s also common to have latency issues for which traces allows us to find the bottleneck in complex request/response flows. 
 
-1. Zoom out the time range until you have log lines that start with a `Trace ID`
+1. Zoom out the time range until you have log lines that start with a `(Tempo) Trace ID`
 
-2. Click on a log line with a `Trace ID`
+2. Click on a log line with a `(Tempo) Trace ID`
     
     ![Log with trace](img/log-with-trace.png)
    
-3. In the parse fields, you should have a Jaeger button next to the parsed `Trace Id` value.
+3. In the parse fields, you should have a button next to the parsed `(Tempo) Trace Id` value.
 
 4. Click on it, and you can now inspect the trace in the new Grafana 7 Trace View and understand any possible bottlenecks in the request/response flow of your service.
     
