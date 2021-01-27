@@ -35,6 +35,7 @@ We're now going to add a panel showing the 95th percentile of requests time:
 5. Set the legend value of the 95th percentile value to : `{{host}} - 95%` and set the legend value of the max query to `{{host}} - max`
 5. Set panel title to `95th percentile of Request Time` and save the panel.
   
+ <!--- temp removed of a bug with the loki cloud version. fixed soon
 ### Percentage of request by googlebot panel
 
 We're now going to add a panel showing the percentage of request made by Google's webspider, Googlebot.
@@ -46,6 +47,8 @@ We're now going to add a panel showing the percentage of request made by Google'
 6. We want to make clear this metrics is a percentage.  Go to the Field tab in the upper right corner and set the Unit option to `percent (0-100)` as value. (This option can be found under Misc)
 7. Below the Unit option is a field called Max.  Set Max to `5` as we do not anticipate the percentage of Googlebot requests to be higher than 5% of the overall total.
 8. Set panel title to `current % of request by Google` and save the panel.
+
+--->
 
 ### Worldmap panel 
 
@@ -80,7 +83,9 @@ To import a dashboard click the `+` icon in the side menu, and then select Impor
 1. The dashboard id is: `12559`
 2. Set the `LokiNGINX` as the Loki-datasource
 2. You can now explore some of the panels, like the: 
+<!--- temp removed of a bug with the loki cloud version. fixed soon
     - % of 5xx requests
+ --->
     - Top requested pages
     - Top user agents
     - Top IP addresses
