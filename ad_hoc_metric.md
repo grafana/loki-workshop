@@ -12,9 +12,9 @@
 ## Write LogQL Metric queries with the explorer view: Query time metrics extraction
 
 1. Run the following query to extract the byte_send from every log line, and calculate how many avg bytes are requested by GoogleBot for every 5 minutes.
-`sum by (host) (avg_over_time({filename="/var/log/nginx/json_access.log"} |= "Googlebot" | json | unwrap bytes_sent [5m]))`
+`avg_over_time({filename="/var/log/nginx/json_access.log"} |= "Googlebot" | json | unwrap bytes_sent [5m]) by (host)`
 2. Add another query, by pressing the + Add query button, and add the following query. (Run with shift-enter)
-`sum by (host) (max_over_time({filename="/var/log/nginx/json_access.log"} |= "Googlebot" | json | unwrap bytes_sent [5m]))`
+`max_over_time({filename="/var/log/nginx/json_access.log"} |= "Googlebot" | json | unwrap bytes_sent [5m]) by (host)`
     - Notice that there is a second metric series added to the graph, where we return the max amount of response bytes within that `5m` interval.
 
 ## Loki dashboard with ad hoc metrics
@@ -35,7 +35,6 @@ We're now going to add a panel showing the 95th percentile of requests time:
 5. Set the legend value of the 95th percentile value to : `{{host}} - 95%` and set the legend value of the max query to `{{host}} - max`
 5. Set panel title to `95th percentile of Request Time` and save the panel.
   
- <!--- temp removed of a bug with the loki cloud version. fixed soon
 ### Percentage of request by googlebot panel
 
 We're now going to add a panel showing the percentage of request made by Google's webspider, Googlebot.
@@ -47,8 +46,6 @@ We're now going to add a panel showing the percentage of request made by Google'
 6. We want to make clear this metrics is a percentage.  Go to the Field tab in the upper right corner and set the Unit option to `percent (0-100)` as value. (This option can be found under Misc)
 7. Below the Unit option is a field called Max.  Set Max to `5` as we do not anticipate the percentage of Googlebot requests to be higher than 5% of the overall total.
 8. Set panel title to `current % of request by Google` and save the panel.
-
---->
 
 ### Worldmap panel 
 
@@ -83,9 +80,7 @@ To import a dashboard click the `+` icon in the side menu, and then select Impor
 1. The dashboard id is: `12559`
 2. Set the `LokiNGINX` as the Loki-datasource
 2. You can now explore some of the panels, like the: 
-<!--- temp removed of a bug with the loki cloud version. fixed soon
     - % of 5xx requests
- --->
     - Top requested pages
     - Top user agents
     - Top IP addresses
