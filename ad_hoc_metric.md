@@ -52,7 +52,7 @@ We're now going to add a panel showing the percentage of request made by Google'
 World map using the country code that was added by geocoding the IP address. 
 
 In your Grafana.com portal, install the Worldmap Panel plugin following these instructions 
-https://grafana.com/grafana/plugins/grafana-worldmap-panel/installation 
+https://grafana.com/grafana/plugins/grafana-worldmap-panel/
 
 Return to your Grafana instance, wait for 2 minutes while the instance auto-restarts after the Worldmap Panel plugin, then run the following:  
 
