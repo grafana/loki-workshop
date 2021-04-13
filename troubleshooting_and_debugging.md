@@ -8,7 +8,7 @@ Filter logs using Loki label queries
 
     ![Explore button](img/explore-button.png)
        
-2. Select the `{service="web_app_3"}` log label from the Log Labels dropdown, which is positioned  left of the query input box. 
+2. Select the `{service="web_app_3"}` log label from the Log Browser, which is positioned  left of the query input box. 
     
     ![Loki select](img/loki-select-7_5.png)
   
