@@ -71,7 +71,7 @@ With Loki v2 you can now rewrite log lines with `line_format` and labels with `l
 2. Select the `LokiNGINX` datasource
 3. Choose the Logs visualisation
 3. Add the following query which re-formats every log line
-`{filename="/var/log/nginx/json_access.log"} | json | line_format "request for {{.request_uri}} with HTTP status: {{.status}} "`
+`{filename="/var/log/nginx/json_access.log"} | json | line_format "🚀 request for {{.request_uri}} with HTTP status: {{.status}} ✌️"`
 4. Set panel title to `Logs` and save the panel.
 
 ## Import the full sample web analytics demo dashboard
