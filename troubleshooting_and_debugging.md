@@ -19,7 +19,7 @@ Filter logs using Loki label queries
 4. Filter your logs down using filter expressions, try out by pasting the below queries and press shift-enter to run them.
     - All log lines that contain `favicon.ico`:  `{service="web_app_3"} |= "favicon.ico"`
     - All log lines that don’t contain a `200` value: `{service="web_app_3"} != "200"`
-    - All log lines that contain the 5xx value: `{service="web_app_3"} |~ ``\"5(\d){2}\"```
+    - All log lines that contain the 5xx value: `{service="web_app_3"} |~ ```\"5(\d){2}\"``` `
         
         ![Querying Loki](img/loki-query.png)
      
