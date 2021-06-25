@@ -19,7 +19,7 @@ Filter logs using Loki label queries
 4. Filter your logs down using filter expressions, try out by pasting the below queries and press shift-enter to run them.
     - All log lines that contain `favicon.ico`:  `{service="web_app_3"} |= "favicon.ico"`
     - All log lines that don’t contain a `200` value: `{service="web_app_3"} != "200"`
-    - All log lines that contain the 5xx value: `{service="web_app_3"} |~ \`\"5(\d){2}\"\` `
+    - All log lines that contain the 50x value: `{service="web_app_3"} |~ "50\\d{1}" `
         
         ![Querying Loki](img/loki-query.png)
      
@@ -29,7 +29,7 @@ Filter logs using Loki label queries
 
 7. Start graphing logs counts with Range Vectors Aggregations, try out by pasting the below queries and press shift-enter to run them.
     - Graph the log line count for any web_app service with an 5xx category status code AND contains Mozilla for every 5 minute interval 
-      `sum by (service) (count_over_time({ service=~"web_app_.+", status_code=~``\"5(\d){2}\"`` } |~ "Mozilla.*" [5m]))`
+      `sum by (service) (count_over_time({ service=~"web_app_.+", status_code=~ "5\\d{2}" } |~ "Mozilla.*" [5m]))`
 
 ## Correlate metrics, logs, and traces
 
