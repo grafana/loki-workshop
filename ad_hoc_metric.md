@@ -79,7 +79,9 @@ With Loki v2 you can now rewrite log lines with `line_format` and labels with `l
 To import a dashboard click the `+` icon in the side menu, and then select Import.
 1. The dashboard id is: `12559`
 2. Set the `LokiNGINX` as the Loki-datasource
-2. You can now explore some of the panels, like the: 
+3. Set `Label Name` to `filename`
+4. Set `Label Value` to `/var/log/nginx/json_access.log`
+5. You can now explore some of the panels, like the: 
     - % of 5xx requests
     - Top requested pages
     - Top user agents
