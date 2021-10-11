@@ -30,7 +30,7 @@ Let’s create our first Loki dashboard using label and metrics extraction queri
 We're now going to add a panel showing the 95th percentile of requests time:
 1. Click the add a new panel button 
 2. Select the `LokiNGINX` datasource
-3. Add the following query which extracts the total request time from every log line, and calculates the 95th percentile. Which is the max request time of 95% within the interval of five minutes; `quantile_over_time(0.95,{filename="/var/log/nginx/json_access.log"} | json | upstream_cache_status="MISS" | unwrap request_time |  __error__=""  [1m]) by (host)`
+3. Add the following query which extracts the total request time from every log line, and calculates the 95th percentile. Which is the max request time of 95% within the interval of five minutes; `quantile_over_time(0.95,{filename="/var/log/nginx/json_access.log"} | json | upstream_cache_status="MISS" | unwrap request_time |  __error__=""  [5m]) by (host)`
 4. Add another query here, that will show the max request time within every 1 min interval; `max_over_time({filename="/var/log/nginx/json_access.log"} | json | upstream_cache_status="MISS" | unwrap request_time |  __error__=""  [1m]) by (host)`
 5. Set the legend value of the 95th percentile value to : `{{host}} - 95%` and set the legend value of the max query to `{{host}} - max`
 5. Set panel title to `95th percentile of Request Time` and save the panel.
