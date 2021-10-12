@@ -42,8 +42,8 @@ We're now going to add a panel showing the percentage of request made by Google'
 2. Select the `LokiNGINX` datasource
 3. Add the following query. Notice we are doing some math here with loki metrics! In this case we are calculating the percentage of request by Googlebot vs the total request, per 10 minute interval: `sum(rate(({job="nginx_access_log"} |= "Googlebot")[10m])) / (sum(rate(({job="nginx_access_log"} |= "Mozilla")[10m])) / 100)`
 4. We want to show it as a total number, so in the panel settings on the right, choose the Stat visualisation 
-5. It now shows the mean value over the current time range, and we want the show the current percentage, so scroll down to display settings and set Value to Last.  
-6. We want to make clear this metrics is a percentage.  Go to the Field tab in the upper right corner and set the Unit option to `percent (0-100)` as value. (This option can be found under Misc)
+5. It now shows the mean value over the current time range, and we want the show the current percentage, so scroll down to `Value Options` and set Value to Last.  
+6. We want to make clear this metrics is a percentage.  Go to `Standard Options` and set the Unit option to `percent (0-100)` as value. (This option can be found under Misc)
 7. Below the Unit option is a field called Max.  Set Max to `5` as we do not anticipate the percentage of Googlebot requests to be higher than 5% of the overall total.
 8. Set panel title to `current % of request by Google` and save the panel.
 
