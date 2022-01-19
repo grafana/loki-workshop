@@ -3,7 +3,7 @@
 ![Loki Logo](logo_and_name.png)
 
 ## Prerequisites:
-[Initial setup for a smooth workshop experience](./workshop-prerequisites)
+[Initial setup for a smooth workshop experience](./workshop-prerequisites.md)
 
 ## Breakouts:
 
