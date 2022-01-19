@@ -2,6 +2,9 @@
 
 ![Loki Logo](logo_and_name.png)
 
+## Prerequisites:
+[Initial setup for a smooth workshop experience](./workshop-prerequisites)
+
 ## Breakouts:
 
 [Breakout 1: Troubleshooting and debugging](./troubleshooting_and_debugging.md)
