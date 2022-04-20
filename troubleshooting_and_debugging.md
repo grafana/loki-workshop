@@ -62,9 +62,7 @@ Correlating your prometheus metrics with your Loki metrics
 4. Select in the prometheus graph the timerange where the drop happened.
     - Notice the Loki panel timerange also shows the logs of that time range. 
   
-5. If you have a lot of log lines, filter on the errors by using the full text search capabilities of Loki.
-    - You can search for the text "error_level":"ERROR" with this query `{service="web_app_3"} |= "error_level\":\"ERROR"`
-    - You can also parse the log line to json and then do a field search `{service="web_app_3"} | json | __error__ = "" |  error_level = "ERROR"`
+5. If you have a lot of log lines, filter on the errors by using the query `{service="web_app_3", error_level="ERROR"}`.
 
 You should see a log line with out of memory, which hints at a memory leak being the reason of the drop in concurrent users.
 
