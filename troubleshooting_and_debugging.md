@@ -78,7 +78,7 @@ Besides outages, it’s also common to have latency issues for which traces allo
 
     ![Log and trace correlation](img/log-trace-correlation.png)
 
-4. Click on it, and you can now inspect the trace in the new Grafana 7 Trace View and understand any possible bottlenecks in the request/response flow of your service.
+4. Click on it, and you can now inspect the trace in the Grafana Trace View and understand any possible bottlenecks in the request/response flow of your service.
 
 
 
