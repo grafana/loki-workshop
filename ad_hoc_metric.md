@@ -47,23 +47,21 @@ We're now going to add a panel showing the percentage of request made by Google'
 7. Below the Unit option is a field called Max.  Set Max to `5` as we do not anticipate the percentage of Googlebot requests to be higher than 5% of the overall total.
 8. Set panel title to `current % of request by Google` and save the panel.
 
-### Worldmap panel 
+### Geomap panel 
 
-World map using the country code that was added by geocoding the IP address. 
-
-In your Grafana.com portal, install the Worldmap Panel plugin following these instructions 
-https://grafana.com/grafana/plugins/grafana-worldmap-panel/
-
-Return to your Grafana instance, wait for 2 minutes while the instance auto-restarts after the Worldmap Panel plugin, then run the following:  
+Geomap using the country code that was added by geocoding the IP address. 
 
 1. Click the add a new panel icon in the upper right corner.
 2. Select the `LokiNGINX` datasource
 3. Add the following query which counts the log lines, grouped by the extracted country_code; `sum by (geoip_country_code) (count_over_time({filename="/var/log/nginx/json_access.log"} | json | __error__="" [1m]))`
 4. And put as Legend value: `{{geoip_country_code}}`
-5. In Panel tab on the right, select the Worldmap panel as the visualisation,
-6. Set panel title to `Total requests per country` and save the panel.
-
-The Worldmap panel will be replaced by the Geomap panel in the future. If you want to use the Geomap instead, make sure to add a "Series to rows" transformation to the query. You will need to set the location to 'lookup' and the lookup field to 'Metric'. Finally, set the layer type to ArcGis MapServer in the base layer section. An example of a Geomap will be available when you import the full dashboard in the next sections.  
+5. In Panel tab on the right, select the Geomap panel as the visualisation
+6. Add a "Series to rows" transformation to the query
+7. Change the "Markers" layer type to `ArcGis MapServer`
+8. Add a new layer of type "Markers" (the ArcGis MapServer being a lower level than Markers is important for visualising)
+9. Click on the "Markers" layer and set location to from "Auto" to "Lookup" and the lookup field to "Metric"
+10. Set panel title to `Total requests per country` 
+12. Save the panel
 
 ### Re-writing log lines
 
