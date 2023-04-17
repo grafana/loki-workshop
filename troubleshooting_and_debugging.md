@@ -8,9 +8,9 @@ Filter logs using Loki label queries
 
     ![Explore button](img/explore-button.png)
        
-2. Select the `{service="web_app_3"}` log label from the Log Browser, which is positioned  left of the query input box. 
+2. Select the `{service="web_app_3"}` log label from the Label Browser, which button positioned just above the query input box. 
     
-    ![Loki select](img/loki-select-7_5.png)
+    ![Loki select](img/loki-select.png)
   
 3. Click on one of the returned log lines to see its row detail view. If you don’t see enough rows, zoom out the time range using the magnifying glass icon in the right upper corner.
     
