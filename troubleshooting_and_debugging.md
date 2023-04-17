@@ -39,7 +39,7 @@ Finding suspect patterns in Prometheus metrics
     
     ![Prometheus Correlation in the Explore view](img/prom-explore.png)
   
-2. Select from the metrics picker `web` > `web_http_requests`.
+2. Select from the Metrics Browser `web` > `web_http_requests`.
 
 3. Make sure the Time Picker (right upper corner, clock icon) is set to last 5 minutes.
     - Notice the three series, each charting the amount of concurrent users over time. 
