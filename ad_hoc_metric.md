@@ -21,14 +21,14 @@
 
 Let’s create our first Loki dashboard using label and metrics extraction queries.
 
-1. Click the plus button on the left menu bar to create a new dashboard
+1. Click the "+" button on the right menu bar and select "New Dashboard" to create a new dashboard
 2. Select last 3 hours in the time picker (top right)
 3. Click the save button and give your dashboard a name. 
 
 ### 95th percentile percentile panel
 
 We're now going to add a panel showing the 95th percentile of requests time:
-1. Click the add a new panel button 
+1. Click the "+ Add visualization" button
 2. Select the `LokiNGINX` datasource
 3. Add the following query which extracts the total request time from every log line, and calculates the 95th percentile. Which is the max request time of 95% within the interval of five minutes; `quantile_over_time(0.95,{filename="/var/log/nginx/json_access.log"} | json | upstream_cache_status="MISS" | unwrap request_time |  __error__=""  [5m]) by (host)`
 4. Add another query here, that will show the max request time within every 1 min interval; `max_over_time({filename="/var/log/nginx/json_access.log"} | json | upstream_cache_status="MISS" | unwrap request_time |  __error__=""  [1m]) by (host)`
@@ -38,7 +38,7 @@ We're now going to add a panel showing the 95th percentile of requests time:
 ### Percentage of request by googlebot panel
 
 We're now going to add a panel showing the percentage of request made by Google's webspider, Googlebot.
-1. Click the add a new panel icon in the upper right corner.
+1. Click Add in the dashboard header and select Visualization in the dropdown.
 2. Select the `LokiNGINX` datasource
 3. Add the following query. Notice we are doing some math here with loki metrics! In this case we are calculating the percentage of request by Googlebot vs the total request, per 10 minute interval: `sum(rate(({job="nginx_access_log"} |= "Googlebot")[10m])) / (sum(rate(({job="nginx_access_log"} |= "Mozilla")[10m])) / 100)`
 4. We want to show it as a total number, so in the panel settings on the right, choose the Stat visualisation 
@@ -51,7 +51,7 @@ We're now going to add a panel showing the percentage of request made by Google'
 
 Geomap using the country code that was added by geocoding the IP address. 
 
-1. Click the add a new panel icon in the upper right corner.
+1. Click Add in the dashboard header and select Visualization in the dropdown.
 2. Select the `LokiNGINX` datasource
 3. Add the following query which counts the log lines, grouped by the extracted country_code; `sum by (geoip_country_code) (count_over_time({filename="/var/log/nginx/json_access.log"} | json | __error__="" [1m]))`
 4. And put as Legend value: `{{geoip_country_code}}`
@@ -67,7 +67,7 @@ Geomap using the country code that was added by geocoding the IP address.
 
 With Loki v2 you can now rewrite log lines with `line_format` and labels with `label_format`. More documentation here: https://grafana.com/docs/loki/latest/logql/#Line-Format-Expression
 
-1. Click the add a new panel icon in the upper right corner.
+1. Click Add in the dashboard header and select Visualization in the dropdown.
 2. Select the `LokiNGINX` datasource
 3. Choose the Logs visualisation
 3. Add the following query which re-formats every log line
@@ -76,7 +76,7 @@ With Loki v2 you can now rewrite log lines with `line_format` and labels with `l
 
 ## Import the full sample web analytics demo dashboard
 
-To import a dashboard hover over the `Window` icon in the side menu, click `Manage` and then select Import.
+To import a dashboard click the "+" button in the top right menu bar, and select Import Dashboard
 1. The dashboard id is: `12559`
 2. Set the `LokiNGINX` as the Loki-datasource
 3. Set `Label Name` to `filename`
