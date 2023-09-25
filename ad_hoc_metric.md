@@ -6,8 +6,8 @@
 2. Run the query `{filename="/var/log/nginx/json_access.log"} |= "Googlebot"` for the last 5 minutes, notice you get json log lines of googlebot requests. Click a log line to see it’s details.
 3. Query time labels extraction
     - We use the JSON parser to extract the HTTP status code from the raw log line.
-    - Run the following request to get the amount of Googlebot requests per minute, split out by statuscode: `sum by (status) (count_over_time({filename="/var/log/nginx/json_access.log"} |= "Googlebot" | json [5m]))`
-    - Run the following request to get the amount of requests per minute, split out by http_method `sum by (request_method) (count_over_time({filename="/var/log/nginx/json_access.log"} | json [5m]))`
+    - Run the following request to get the amount of Googlebot requests over a 5-minute rolling window, split out by statuscode: `sum by (status) (count_over_time({filename="/var/log/nginx/json_access.log"} |= "Googlebot" | json [5m]))`
+    - Run the following request to get the amount of requests over a 5-minute rolling window, split out by http_method `sum by (request_method) (count_over_time({filename="/var/log/nginx/json_access.log"} | json [5m]))`
 
 ## Write LogQL Metric queries with the explorer view: Query time metrics extraction
 
