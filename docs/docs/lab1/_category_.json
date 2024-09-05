@@ -1,0 +1,8 @@
+{
+  "label": "Lab 1 - Explore Logs",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "Understand how to view and filter Loki logs in Grafana."
+  }
+}
