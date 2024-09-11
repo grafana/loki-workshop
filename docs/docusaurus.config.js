@@ -89,8 +89,8 @@ const config = {
                 href: 'https://slack.grafana.com/'
               },
               {
-                label: 'Twitter',
-                href: 'https://twitter.com/grafana',
+                label: 'X',
+                href: 'https://x.com/grafana',
               },
             ],
           },

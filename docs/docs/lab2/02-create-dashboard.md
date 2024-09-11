@@ -45,9 +45,14 @@ We're now going to add a panel showing the 95th percentile of requests time:
 1. Click on the **Options** panel underneath each query, and:
 
     - set the **Legend** value of the 95th percentile query to : `{{host}} - 95%` 
+
     - set the **Legend** value of the max_over_time query to `{{host}} - max`
 
-    **TIP:** The `{{host}}` placeholder tells Grafana to insert the `host` label from the Loki metric query series.
+    :::info
+    
+    The `{{host}}` placeholder tells Grafana to insert the `host` label from the Loki metric query result.
+
+    :::
 
 1.  In the **Panel options** sidebar, set the Panel Title to **95th percentile of Request Time** and then click the **Back to dashboard** button.
 

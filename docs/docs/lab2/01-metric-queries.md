@@ -40,7 +40,11 @@ In this section of the workshop we will analyze log volume, using Loki's query-t
 
     Now Grafana will show the amount of Googlebot requests per minute, split by (HTTP) status code.
 
-    **TIP:** To understand a Loki LogQL query, click on the **Explain query** toggle.
+    :::tip
+    
+    To understand a Loki LogQL query, click on the **Explain query** toggle.
+
+    :::
 
 1.  Finally, edit the query to this and run it:
 
@@ -78,7 +82,11 @@ In Loki, you can also calculate metrics using values inside the log line itself 
     max_over_time({filename="/var/log/nginx/json_access.log"} |= "Googlebot" | json | unwrap bytes_sent [5m]) by (host)
     ```
 
-    **TIP:** `max_over_time` calculates the maximum of all values in the specified interval (in this case, 5 minutes).
+    :::info
+
+    `max_over_time` calculates the maximum of all values in the specified interval (in this example, 5 minutes).
+
+    :::
 
     Notice that a second metric series is added to the graph, where we return the max amount of response bytes within that `5m` interval.
 

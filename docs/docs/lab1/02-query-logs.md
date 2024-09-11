@@ -11,26 +11,33 @@ Let's now dive into some Loki querying, using Loki's LogQL query syntax.
     Notice how we can see:
 
     - The LogQL query that was being used to perform our search
+
     - The Log volume over the current time period 
 
-    **INFO:** LogQL is the query language used by Loki. A basic LogQL query looks like this:
+    :::info
+    
+    LogQL is the query language in Loki. A basic LogQL query looks like this:
 
     ```
-    {service_name=`web_app_3`, status_code=`200`, http_method=`DELETE`} | json |~ `(?i)favicon\.ico`
+    {my_label="value"} |= `foo`
     ```
 
-1.  Modify the LogQL query to remove the `status_code` and `http_method` label filters, then click on **Run query**:
+    :::
+
+1.  Modify the LogQL query to remove the `status_code` and `http_method` label filters, as below. then click on **Run query**:
 
     ```
     {service_name=`web_app_3`} | json |~ `(?i)favicon\.ico`
     ```
 
-    **INFO:** _Label filters_ (`{label="value"}`) are the building blocks of any LogQL query. They allow Loki to find groups of logs in its index.
+    _Label filters_ (`{label="value"}`) are the building blocks of any LogQL query. They allow Loki to find streams of logs.
 
     This new query:
 
     - Finds all logs which have the label `service_name` equal to `web_app_3`.
+
     - Parses each log line to extract JSON fields.
+
     - Filters the logs for lines containing the string `favicon.ico`
 
 1.  In the main **Logs** panel, click on the **Table** toggle in the right hand corner, if it is not already selected.
@@ -45,7 +52,13 @@ Let's now dive into some Loki querying, using Loki's LogQL query syntax.
 
     ![Loki Explore table view](/img/loki-explore-table-view.png)
 
-    **TIP:** From here, you can also download the logs in text, JSON or CSV formats by clicking on the **Download** button.
+    :::tip
+    
+    From here, you can also download the logs in text, JSON or CSV formats by clicking on the **Download** button.
+
+    :::
+
+Notice how we've been able to shape and explore our data at query time, using Loki's query-time JSON parser, and without having to index the content of the logs upfront!
 
 ## Correlate metrics, logs, and traces
 

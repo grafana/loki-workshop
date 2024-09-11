@@ -50,7 +50,7 @@ Slice and filter your logs using _Explore Logs_ in Grafana.
 
 1.  Let's narrow down the logs by adding a simple filter.
 
-    In the search bar, enter the text **favicon.ico**. This will show only those log lines containing the string `favicon.ico`:
+    In the search bar, enter the text **favicon**. This will show only those log lines containing the string `favicon`:
 
     ![Filtered logs](/img/explore-logs-filtered-logs.png)
 
