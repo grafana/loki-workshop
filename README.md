@@ -4,5 +4,5 @@
 
 To begin the labs, visit the documentation website:
 
-[https://github.grafana.io/loki-workshop](https://grafana.github.io/loki-workshop/)
+[https://grafana.github.io/loki-workshop](https://grafana.github.io/loki-workshop/)
 
