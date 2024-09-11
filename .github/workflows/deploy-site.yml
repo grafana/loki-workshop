@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./site
+        working-directory: ./docs
     steps:
       - uses: actions/checkout@v4
         with:
@@ -25,7 +25,7 @@ jobs:
         with:
           node-version: 18
           cache: npm
-          cache-dependency-path: './site/package-lock.json'
+          cache-dependency-path: './docs/package-lock.json'
 
       - name: Install dependencies
         run: npm ci
@@ -35,7 +35,7 @@ jobs:
       - name: Upload Build Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: site/build
+          path: docs/build
 
   deploy:
     name: Deploy to GitHub Pages
