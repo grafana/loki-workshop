@@ -1,0 +1,8 @@
+{
+  "label": "Lab 2 - Metrics and Dashboards",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "Learn how to generate metrics from logs"
+  }
+}
