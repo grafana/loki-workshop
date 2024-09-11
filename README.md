@@ -4,4 +4,5 @@
 
 To begin the labs, visit the documentation website:
 
-https://github.grafana.io/loki_workshop_breakouts
+https://github.grafana.io/loki-workshop
+
