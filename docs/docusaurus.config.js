@@ -16,12 +16,12 @@ const config = {
   url: 'https://grafana.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/loki_workshop_breakouts',
+  baseUrl: '/loki-workshop',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'grafana', // Usually your GitHub org/user name.
-  projectName: 'loki_workshop_breakouts', // Usually your repo name.
+  projectName: 'loki-workshop', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -45,7 +45,7 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/grafana/loki_workshop_breakouts/tree/main/docs/site/',
+            'https://github.com/grafana/loki-workshop/tree/main/docs/',
         },
         blog: false, // Optional: disable the blog plugin
         theme: {
@@ -68,7 +68,7 @@ const config = {
         },
         items: [
           {
-            href: 'https://github.com/grafana/loki_workshop_breakout',
+            href: 'https://github.com/grafana/loki-workshop',
             label: 'GitHub',
             position: 'right',
           },
@@ -116,7 +116,7 @@ const config = {
             items: [
               {
                 label: 'GitHub',
-                href: 'https://github.com/grafana/loki_workshop_breakout',
+                href: 'https://github.com/grafana/loki-workshop',
               },
             ],
           },
