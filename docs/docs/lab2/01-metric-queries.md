@@ -46,12 +46,6 @@ In this section of the workshop we will analyze log volume, using Loki's query-t
 
     :::
 
-1.  Finally, edit the query to this and run it:
-
-    ```
-    sum by (request_method) (count_over_time({filename="/var/log/nginx/json_access.log"} | json [5m]))
-    ```
-
 1.  Click the **+ Add query** button and paste in the following query, which calculates the total number of log entries over time in our NGINX log:
 
     ```
