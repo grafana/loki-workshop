@@ -104,6 +104,8 @@ Geomap using the country code that was added by geocoding the IP address.
 
 1.  From the transformations palette, add the **Series to rows** transformation.
 
+1.  In the sidebar, click on the dropdown at the top and change the panel type to **Geomap**.
+
 1.  In the **Panel options** sidebar, change the following settings:
 
     - Under **Map layers**, change the **Layer type** to **ArcGIS MapServer**.
@@ -113,8 +115,6 @@ Geomap using the country code that was added by geocoding the IP address.
         - change the **Lookup field** to **Metric**
 
     - Change the panel title to **Total requests per country**
-
-1. Finally, in the sidebar, click on the dropdown at the top and change the panel type to **Geomap**.
 
 1.  Return to your dashboard and **save** your progress.
 
