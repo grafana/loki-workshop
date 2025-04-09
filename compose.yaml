@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  grafana:
+    image: docker.io/grafana/grafana:latest
+    ports:
+      - "3007:3000"
+    environment:
+      GF_PLUGINS_PREINSTALL: grafana-lokiexplore-app
+      GF_AUTH_ANONYMOUS_ENABLED: true
+      GF_AUTH_ANONYMOUS_ORG_ROLE: Admin
+      GF_USERS_DEFAULT_THEME: light  # for readability in the screenshots!
+      GF_LOG_FILTERS: migrator:warn  # make the logs less chatty
+      LOKI_URL: ${LOKI_URL}
+      LOKI_USERNAME: ${LOKI_USERNAME}
+      LOKI_PASSWORD: ${LOKI_PASSWORD}
+      TEMPO_URL: ${TEMPO_URL}
+      TEMPO_USERNAME: ${TEMPO_USERNAME}
+      TEMPO_PASSWORD: ${TEMPO_PASSWORD}
+    volumes:
+      - ./grafana/provisioning:/etc/grafana/provisioning:z
