@@ -1,0 +1,20 @@
+# https://taskfile.dev
+
+version: '3'
+
+tasks:
+  dev:
+    desc: Run the docs server in development mode
+    dir: docs
+    cmds:
+      - npm start
+
+  screenshots:
+    desc: Update screenshots in the docs (ensure you've set the correct vars in `.env`)
+    dir: docs
+    cmds:
+      - pip install shot-scraper
+      - shot-scraper install -b firefox  # Install the latest version of the Firefox driver
+      - podman-compose up grafana -d
+      - shot-scraper multi shots.yaml --scale-factor 1.5 --browser firefox
+      - podman-compose down grafana

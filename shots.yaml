@@ -1,0 +1,82 @@
+# Run with:
+# shot-scraper multi shots.yaml --scale-factor 1.5 --browser firefox
+
+- url: http://localhost:3007/a/grafana-lokiexplore-app/explore?theme=light  # http://localhost:3007/a/grafana-lokiexplore-app/explore?theme=light&from=now-15m&to=now&var-ds=ceibdharrao74c&var-filters=service_name%7C%3D%7Cweb_app_3&var-filters=status_code%7C%3D%7C404&patterns=%5B%5D&var-primary_label=service_name%7C%3D~%7C.%2B&timezone=browser&var-fields=&var-levels=&var-metadata=&var-all-fields=&var-patterns=&var-lineFilterV2=&var-lineFilters=&var-filters_replica=status_code%7C%3D%7C404
+  output: docs/static/img/drilldown-logs-app.png
+  height: 900
+  wait: 1500
+  wait_for:
+    () => {
+      const closer = document.querySelector('[aria-label="Close alert"]');
+      if (closer) {
+        closer.click();
+        return true;
+      }
+    }
+
+- url: http://localhost:3007/a/grafana-lokiexplore-app/explore?theme=light  # http://localhost:3007/a/grafana-lokiexplore-app/explore?theme=light&from=now-15m&to=now&var-ds=ceibdharrao74c&var-filters=service_name%7C%3D%7Cweb_app_3&var-filters=status_code%7C%3D%7C404&patterns=%5B%5D&var-primary_label=service_name%7C%3D~%7C.%2B&timezone=browser&var-fields=&var-levels=&var-metadata=&var-all-fields=&var-patterns=&var-lineFilterV2=&var-lineFilters=&var-filters_replica=status_code%7C%3D%7C404
+  output: docs/static/img/explore-logs-webapp3.png
+  height: 1500
+  wait: 5000
+  selector_all: section[data-testid*="web_app_3"]
+  javascript:
+    () => {
+      const button = document.querySelector('section[data-testid*="web_app_3"] a[data-testid*="Show logs"]');
+      if (button) {
+        button.style.borderColor = "red";
+        button.style.borderWidth = "3px";
+        return true;
+      }
+    }
+
+- url: http://localhost:3007/a/grafana-lokiexplore-app/explore/service/web_app_3/logs?theme=light&from=now-15m&to=now&var-ds=lokicorrelation&var-filters=service_name%7C%3D%7Cweb_app_3&wrapLogMessage=true
+  output: docs/static/img/explore-logs-expand-line.png
+  height: 800
+  wait: 5000  # TODO: Does this need to be here?
+  wait_for:
+    () => {
+      const closer = document.querySelector('[aria-label="Close alert"]');
+      if (closer) {
+        closer.click();
+        return true;
+      }
+    }
+
+- url: http://localhost:3007/a/grafana-lokiexplore-app/explore/service/web_app_3/logs?theme=light&patterns=%5B%5D&from=now-15m&to=now&var-ds=lokicorrelation&var-filters=service_name%7C%3D%7Cweb_app_3&var-fields=&var-levels=&var-metadata=&var-patterns=&var-lineFilterV2=&var-lineFilters=caseInsensitive,0%7C__gfp__%3D%7Cfavicon&timezone=browser&var-all-fields=&urlColumns=%5B%5D&visualizationType=%22logs%22&displayedFields=%5B%5D&sortOrder=%22Descending%22&wrapLogMessage=false
+  output: docs/static/img/explore-logs-filtered-logs.png
+  height: 800
+  wait: 5000
+  wait_for:
+    () => {
+      const closer = document.querySelector('[aria-label="Close alert"]');
+      if (closer) {
+        closer.click();
+        return true;
+      }
+    }
+
+- url: http://localhost:3007/a/grafana-lokiexplore-app/explore/service/web_app_3/logs?theme=light&patterns=%5B%5D&from=now-15m&to=now&var-ds=lokicorrelation&var-filters=service_name%7C%3D%7Cweb_app_3&var-filters=status_code%7C%3D%7C401&var-fields=&var-levels=&var-metadata=&var-patterns=&var-lineFilterV2=&var-lineFilters=caseInsensitive,0%7C__gfp__%3D%7Cfavicon.ico&timezone=browser&var-all-fields=&urlColumns=%5B%5D&visualizationType=%22logs%22&displayedFields=%5B%5D&sortOrder=%22Descending%22&wrapLogMessage=false
+  output: docs/static/img/explore-logs-filters.png
+  height: 350
+  wait: 5000
+  wait_for:
+    () => {
+      const closer = document.querySelector('[aria-label="Close alert"]');
+      if (closer) {
+        closer.click();
+        return true;
+      }
+    }
+
+- url: http://localhost:3007/a/grafana-lokiexplore-app/explore/service/web_app_3/logs?theme=light&patterns=%5B%5D&from=now-15m&to=now&var-ds=lokicorrelation&var-filters=service_name%7C%3D%7Cweb_app_3&var-filters=status_code%7C%3D%7C404&var-fields=&var-levels=&var-metadata=&var-patterns=&var-lineFilterV2=&var-lineFilters=caseInsensitive,0%7C__gfp__%3D%7Cfavicon.ico&timezone=browser&var-all-fields=&urlColumns=%5B%5D&visualizationType=%22logs%22&displayedFields=%5B%5D&sortOrder=%22Descending%22&wrapLogMessage=false
+  output: docs/static/img/explore-logs-filters2.png
+  height: 650
+  wait: 5000
+  wait_for:
+    () => {
+      const closer = document.querySelector('[aria-label="Close alert"]');
+      if (closer) {
+        closer.click();
+        return true;
+      }
+    }

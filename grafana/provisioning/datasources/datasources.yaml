@@ -1,0 +1,31 @@
+apiVersion: 1
+
+datasources:
+  - uid: lokicorrelation
+    name: LokiCorrelation
+    type: loki
+    access: proxy
+    url: ${LOKI_URL}
+    basicAuth: true
+    basicAuthUser: ${LOKI_USERNAME}
+    secureJsonData:
+      basicAuthPassword: ${LOKI_PASSWORD}
+    jsonData:
+      maxLines: 1000
+      derivedFields:
+        - datasourceName: Tempo
+          matcherRegex: ".*tempo_trace_id\".*?\"(.*?)\".*"
+          name: TraceID
+          url: "$${__value.raw}"
+          # Maps trace IDs in logs to trace visualizations in Tempo
+          datasourceUid: tempo
+
+  - uid: tempo
+    name: Tempo
+    type: tempo
+    access: proxy
+    url: "${TEMPO_URL}"
+    basicAuth: true
+    basicAuthUser: ${TEMPO_USERNAME}
+    secureJsonData:
+      basicAuthPassword: ${TEMPO_PASSWORD}
