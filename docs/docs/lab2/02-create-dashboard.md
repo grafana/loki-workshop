@@ -22,6 +22,8 @@ We're now going to add a panel showing the 95th percentile of requests time:
 
 1. Select the **LokiNGINX** datasource.
 
+1. Ensure the **Time series** panel type is selected.
+
 1. Add the following query, which extracts the _request time_ from every log line, and calculates the 95th percentile of that value:
 
     ```
@@ -29,7 +31,7 @@ We're now going to add a panel showing the 95th percentile of requests time:
         | json 
         | upstream_cache_status="MISS" 
         | unwrap request_time 
-        |  __error__=""  [5m]) by (host)
+        |  __error__=""  [5m]) by (server_name)
     ```
 
     This query gives you insight into the near-worst-case performance of requests that weren't served from cache, broken down by host. 
@@ -39,18 +41,22 @@ We're now going to add a panel showing the 95th percentile of requests time:
 1. Click **+ Add query** to add a second query to this panel, to show the max request time within every 1 min interval:
 
     ```
-    max_over_time({filename="/var/log/nginx/json_access.log"} | json | upstream_cache_status="MISS" | unwrap request_time |  __error__=""  [1m]) by (host)
+    max_over_time({filename="/var/log/nginx/json_access.log"} 
+        | json 
+        | upstream_cache_status="MISS" 
+        | unwrap request_time 
+        |  __error__=""  [1m]) by (server_name)
     ```
 
 1. Click on the **Options** panel underneath each query, and:
 
-    - set the **Legend** value of the 95th percentile query to : `{{host}} - 95%` 
+    - set the **Legend** value of the 95th percentile query to : `{{server_name}} - 95%` 
 
-    - set the **Legend** value of the max_over_time query to `{{host}} - max`
+    - set the **Legend** value of the max_over_time query to `{{server_name}} - max`
 
     :::info
     
-    The `{{host}}` placeholder tells Grafana to insert the `host` label from the Loki metric query result.
+    The `{{server_name}}` placeholder tells Grafana to insert the `server_name` label from the Loki metric query result.
 
     :::
 
@@ -58,18 +64,20 @@ We're now going to add a panel showing the 95th percentile of requests time:
 
 1.  Click **Save dashboard** to save your fine work so far!
   
-### Add a percentage of requests by Googlebot panel
+### Add a percentage of requests by bots panel
 
-We're now going to add a panel showing the percentage of request made by Google's webspider, Googlebot.
+We're now going to add a panel showing the percentage of requests made by bots to our website.
 
 1. From the the upper right corner, click **Add** -> **Visualization**.
 
 2. Select the **LokiNGINX** datasource
 
-3. Add the following query. Notice we are doing some math here with Loki metrics! In this case, we are calculating the percentage of requests from Googlebot compared with requests from any browser (`Mozilla`), per 10-minute interval: 
+3. Add the following query. Notice we are doing some math here with Loki metrics! In this case, we are calculating the percentage of requests from bots compared with requests from any browser (`Mozilla`), per 10-minute interval: 
 
     ```
-    sum(rate(({job="nginx_access_log"} |= "Googlebot")[10m])) / (sum(rate(({job="nginx_access_log"} |= "Mozilla")[10m])) / 100)
+    sum(rate(({filename="/var/log/nginx/json_access.log"} |= "bot")[10m])) 
+    / 
+    (sum(rate(({filename="/var/log/nginx/json_access.log"} |= "Mozilla")[10m])) / 100)
     ```
 
 4. We want to show it as a total number, so in the panel settings on the right, choose the Stat visualisation.
@@ -78,13 +86,13 @@ We're now going to add a panel showing the percentage of request made by Google'
 
 6. We want to make clear this metric is a percentage.  Under the **Standard Options** heading, find the **Unit** dropdown and choose **Misc -> Percent (0-100)**.
 
-8. Set the Panel Title to **Current % of request by Google** and click **Back to dashboard**.
+8. Set the Panel Title to **Current % of requests by bots** and click **Back to dashboard**.
 
 9.  Don't forget to save your dashboard with the **Save dashboard** button.
 
-### Geomap panel 
+### Add a Geomap panel 
 
-Geomap using the country code that was added by geocoding the IP address. 
+Next, we'll add a Geomap of requests, using the country code that is contained in the logs, by geolocating the client's IP address. 
 
 1. Ensure you're in Edit mode in your dashboard. (From Grafana 11 onwards, you need to click the **Edit** button in the top right corner.)
 
