@@ -102,7 +102,7 @@ Geomap using the country code that was added by geocoding the IP address.
 
 1.  Above the query, click on the **Transformations** tab, then **Add transformation**. 
 
-1.  From the transformations palette, add the **Series to rows** transformation.
+1.  From the transformations palette, add the **Reduce** transformation, and select the **Series to rows** Mode. For the **Calculations** field, select **Total**.
 
 1.  In the sidebar, click on the dropdown at the top and change the panel type to **Geomap**.
 
@@ -112,7 +112,10 @@ Geomap using the country code that was added by geocoding the IP address.
     - Click the **Add layer** button and add a new layer of type **Markers**. This will add a new layer above the existing layer. It's important for visualization that the ArcGis MapServer layer is shown underneath the Markers.
     - Click on the new **Markers** layer, and:
         - change **Location Mode** from **Auto** to **Lookup**
-        - change the **Lookup field** to **Metric**
+        - change the **Lookup field** to **Field**
+        - Make sure the **Gazetteer** field is **Countries**
+        - Make sure **Styles Size** field is **Total**, with Min 10 and Max 40
+        - Make sure **Color** is **Fixed Color** and pick the **red** color
 
     - Change the panel title to **Total requests per country**
 
