@@ -11,17 +11,17 @@ In this section of the workshop we will analyze log volume, using Loki's query-t
 1.  Click on the **Code** button to show the LogQL code editor. Paste the following query into the query box then press **Run query**:
 
     ```
-    {filename="/var/log/nginx/json_access.log"} |= "Googlebot"
+    {filename="/var/log/nginx/json_access.log"} |= "bot"
     ```
 
-    Notice that you get JSON log lines of googlebot requests. **Click a log line** to see its details.
+    Notice that you get JSON log lines of bot requests. **Click a log line** to see its details.
 
 1.  At this point, Loki hasn't yet parsed the JSON. It shows the log line in plain text. To parse the log line, we need to add a parser, like `json`.
 
     **Change the query** to the following and then press **Run query**:
 
     ```
-    {filename="/var/log/nginx/json_access.log"} |= "Googlebot" | json
+    {filename="/var/log/nginx/json_access.log"} |= "bot" | json
     ```
 
     Now **click a log line** to expand it. 
@@ -35,10 +35,10 @@ In this section of the workshop we will analyze log volume, using Loki's query-t
 1.  Edit the query to this and then run it:
 
     ```
-    sum by(status) (count_over_time({filename="/var/log/nginx/json_access.log"} |= `Googlebot` | json [5m]))
+    sum by(status) (count_over_time({filename="/var/log/nginx/json_access.log"} |= `bot` | json [5m]))
     ```
 
-    Now Grafana will show the amount of Googlebot requests per minute, split by (HTTP) status code.
+    Now Grafana will show the amount of bot requests per minute, split by (HTTP) status code.
 
     :::tip
     
@@ -55,8 +55,8 @@ In this section of the workshop we will analyze log volume, using Loki's query-t
     Grafana shows the results of the two queries together, in the same graph. This graph allows us to see:
 
     - The total number of requests over time
-    - The number of requests which came from Googlebot, broken down by HTTP status code
-    - The proportion of Googlebot requests, compared to all requests
+    - The number of requests which came from bots, broken down by HTTP status code
+    - The proportion of bot requests, compared to all requests
 
     This information was extracted by Loki in real time, without having to parse logs upfront.
 
@@ -64,16 +64,16 @@ In this section of the workshop we will analyze log volume, using Loki's query-t
 
 In Loki, you can also calculate metrics using values inside the log line itself -- for example, graphing the average response time, or the average payload size over time. This is called an **unwrapped range aggregation**. It uses the `unwrap` function to pass a field from the log line to a metric function, such as `avg_over_time` or `max_over_time`.
 
-1. Run the following query to extract the `bytes_sent` field from every JSON log line. This will draw a chart of how many avg bytes are requested by GoogleBot for every 5 minutes:
+1. Run the following query to extract the `bytes_sent` field from every JSON log line. This will draw a chart of how many avg bytes are requested by bots for every 5 minutes:
 
     ```
-    avg_over_time({filename="/var/log/nginx/json_access.log"} |= "Googlebot" | json | unwrap bytes_sent [5m]) by (host)
+    avg_over_time({filename="/var/log/nginx/json_access.log"} |= "bot" | json | unwrap bytes_sent [5m]) by (host)
     ```
 
 2. Click the **+ Add query** button to add another query:
 
     ```
-    max_over_time({filename="/var/log/nginx/json_access.log"} |= "Googlebot" | json | unwrap bytes_sent [5m]) by (host)
+    max_over_time({filename="/var/log/nginx/json_access.log"} |= "bot" | json | unwrap bytes_sent [5m]) by (host)
     ```
 
     :::info
