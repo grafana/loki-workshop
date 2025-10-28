@@ -4,15 +4,15 @@ Let's now dive into some Loki querying, using Loki's LogQL query syntax.
 
 ## Run a Loki query and view logs in a Table
 
-1.  Click on the **Open in Explore** button in the top right.
+1.  In the main logs panel, open the context menu (three dots, at the top right of the panel, located near the _Logs / Table / JSON_ toggle), then click on **Open in Explore**.
 
-    Grafana automatically turns your Explore Logs session into a Grafana Explore session, and writes your LogQL query for you, so you can begin further analysis.
+    Grafana automatically turns your Logs Drilldown session into a Grafana Explore session, filling in your LogQL query for you, so you can begin deeper analysis of the logs.
 
     Notice how we can see:
 
     - The LogQL query that was being used to perform our search
 
-    - The Log volume over the current time period 
+    - The log volume over the current time period 
 
     :::info
     
