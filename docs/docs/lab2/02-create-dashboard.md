@@ -39,7 +39,11 @@ We're now going to add a panel showing the 95th percentile of requests time:
 1. Click **+ Add query** to add a second query to this panel, to show the max request time within every 1 min interval:
 
     ```
-    max_over_time({filename="/var/log/nginx/json_access.log"} | json | upstream_cache_status="MISS" | unwrap request_time |  __error__=""  [1m]) by (host)
+    max_over_time({filename="/var/log/nginx/json_access.log"} 
+        | json 
+        | upstream_cache_status="MISS" 
+        | unwrap request_time 
+        |  __error__=""  [1m]) by (host)
     ```
 
 1. Click on the **Options** panel underneath each query, and:
@@ -69,10 +73,13 @@ We're now going to add a panel showing the percentage of request made by Google'
 3. Add the following query. Notice we are doing some math here with Loki metrics! In this case, we are calculating the percentage of requests from Googlebot compared with requests from any browser (`Mozilla`), per 10-minute interval: 
 
     ```
-    sum(rate(({job="nginx_access_log"} |= "Googlebot")[10m])) / (sum(rate(({job="nginx_access_log"} |= "Mozilla")[10m])) / 100)
+    sum(rate(({filename="/var/log/nginx/json_access.log"} 
+        |= "Googlebot")[10m])) 
+    / 
+    (sum(rate(({filename="/var/log/nginx/json_access.log"} |= "Mozilla")[10m])) / 100)
     ```
 
-4. We want to show it as a total number, so in the panel settings on the right, choose the Stat visualisation.
+4. We want to show it as a total number, so in the panel settings on the right, at the top, change the Visualization to **Stat**.
 
 5. The Stat panel shows a large, bold number which is calculated by Grafana from the results. We want to show the current percentage, so scroll down to **Value options** and in the **Calculation** field, ensure that **Last** is selected.
 
@@ -116,8 +123,9 @@ Geomap using the country code that was added by geocoding the IP address.
         - Make sure the **Gazetteer** field is **Countries**
         - Make sure **Styles Size** field is **Total**, with Min 10 and Max 40
         - Make sure **Color** is **Fixed Color** and pick the **red** color
+        - Set **Fill opacity** to **0.8**
 
-    - Change the panel title to **Total requests per country**
+    - Change the panel title to **Total requests per country**.
 
 1.  Return to your dashboard and **save** your progress.
 
