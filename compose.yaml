@@ -2,7 +2,7 @@ version: '3'
 
 services:
   grafana:
-    image: docker.io/grafana/grafana:latest
+    image: docker.io/grafana/grafana:latest@sha256:dbbc38ea21103cefb50396340cd88afec779c7e070b0a7bf5a75b4ce46651d3f
     ports:
       - "3007:3000"
     environment:
